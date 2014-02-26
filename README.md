@@ -11,6 +11,7 @@ such as _A+B->C_. Using a set of strings as an input, the library parses the cod
 differential equations to be solved using libraries as [GSL](http://www.gnu.org/software/gsl/) or  
 [boost::odenint](http://www.boost.org/doc/libs/1_55_0b1/libs/numeric/odeint/doc/html/index.html) 
 
+##### DESCRIPTION   
 ###### Introduction   
 Dealing with Biochemical Reaction Networks (BcRN) can be exhausting. BcRN can be modeled by many 
 means, one of them by the use of differential equations. There's the Michaelis-Menten approach,  
