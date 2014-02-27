@@ -143,8 +143,9 @@ int main(void)
             
             if(sLine!="")
             {
-                //       std::cout << sLine << std::endl;
+                       std::cout << sLine << std::endl;
                 //       parser(sLine,vsSimpleReactions);
+
                 orderReactionString(sLine,vsSimpleReactions);
                 
             }
