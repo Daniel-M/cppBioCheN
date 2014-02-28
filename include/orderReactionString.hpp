@@ -21,7 +21,9 @@ void orderReactionString(std::string sInput,std::vector<std::string>& vsOutput)
   
   vsPatterns.push_back("<->");
   vsPatterns.push_back("<=>");
-    
+  vsPatterns.push_back("->");
+
+
   std::vector<std::string>* vsBuffer = new std::vector<std::string>;
   
  
