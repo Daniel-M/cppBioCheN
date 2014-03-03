@@ -146,7 +146,7 @@ int main(void)
                        std::cout << sLine << std::endl;
                 //       parser(sLine,vsSimpleReactions);
 
-                orderReactionString(sLine,vsSimpleReactions);
+                //orderReactionString(sLine,vsSimpleReactions);
                 
             }
         }
