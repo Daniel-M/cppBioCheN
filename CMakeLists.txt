@@ -14,7 +14,7 @@ ADD_DEFINITIONS( --std=c++11 )
 #)
 
 #ADD_EXECUTABLE( hh-model src/ )
-ADD_EXECUTABLE(matrix src/matrix-function)
+ADD_EXECUTABLE(matrix src/overloadedMatrix)
 ADD_EXECUTABLE(test-parser src/test)
 ADD_EXECUTABLE(boost-parser src/boost_test)
 #ADD_EXECUTABLE(matrix src/matrix-function)
