@@ -20,7 +20,3 @@
   #include "unStoichem.hpp"
 #endif
 
-#ifndef ORDER_REACTION_STRING
-#define ORDER_REACTION_STRING
-    #include "orderReactionString.hpp"
-#endif

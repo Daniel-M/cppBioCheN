@@ -1,3 +1,7 @@
+#include <iostream>
+#include <vector>
+#include <string>
+
 #include "overloadedMatrix.hpp"
 
 int main()
@@ -11,7 +15,7 @@ int main()
     {
         for (int j = 0; j < m.size2 (); ++ j)
         {
-            m (i, j) = i-j;
+            m (i, j) = i-2*j;
         }
     }
 	
@@ -45,6 +49,15 @@ int main()
 
 	std::cout << mr1 << std::endl;
 	std::cout << mr2 << std::endl;
+
+	std::vector<double> viVector;
+
+	viVector.push_back(1);
+	viVector.push_back(1);
+	
+	
+	std::cout << m + viVector << std::endl;
+
 }
 
 
