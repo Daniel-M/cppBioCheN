@@ -3,7 +3,6 @@ PROJECT(cppBioCheN)
 
 INCLUDE_DIRECTORIES( include )
 
-#ADD_SUBDIRECTORY(src)
 #ADD_SUBDIRECTORY(test)
 
 ADD_DEFINITIONS( --std=c++11 )
@@ -13,9 +12,8 @@ ADD_DEFINITIONS( --std=c++11 )
 #src/
 #)
 
-#ADD_EXECUTABLE( hh-model src/ )
 ADD_EXECUTABLE(matrix src/overloadedMatrix)
-ADD_EXECUTABLE(test-parser src/test)
+ADD_EXECUTABLE(odeint-example src/harmonic_oscillator)
 ADD_EXECUTABLE(boost-parser src/boost_test)
 #ADD_EXECUTABLE(matrix src/matrix-function)
 #target_link_libraries( matrix libmatrix)

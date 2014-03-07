@@ -1,7 +1,7 @@
-#include <sstream>
-#include <boost/numeric/ublas/matrix.hpp>
-#include <boost/numeric/ublas/io.hpp>
-
+//#include <sstream>
+//#include <boost/numeric/ublas/matrix.hpp>
+//#include <boost/numeric/ublas/io.hpp>
+#include "incluidos.hpp"
 
 /**\brief This function converts a number data type like \a int, \a float, or\a double to \a std::string.
  *        The result it's used on symbolic multiplications of boost::numeric::ublas::matrix.

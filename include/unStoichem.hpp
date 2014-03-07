@@ -1,6 +1,7 @@
-#include <string>
-#include <iomanip>
-#include <algorithm>
+//#include <string>
+//#include <iomanip>
+//#include <algorithm>
+#include "incluidos.hpp"
 
 /**\brief returns the stochoimetric coefficient of a chemical species on a given reaction
  *
@@ -10,7 +11,6 @@
  * \param sInput Input std::string to be searched for stoichometric coefficient.
  * \return integer corresponding to the stoichometric coefficient.
  */
-
 int unStoichem(std::string& sInput)
 {
   std::string sCoeff;

@@ -1,12 +1,15 @@
-#include <iostream>
-#include <string>
-#include <vector>
+//#include <iostream>
+//#include <string>
+//#include <vector>
+#include "incluidos.hpp"
 
-#ifndef UN_STOICHEM
-  #define UN_STOICHEM
-  #include "unStoichem.hpp"
-#endif
-
+/**\brief Get a vector of strings sepparated by a pattern
+ *
+ * \param[in] sPattern The string of the pattern to be found.
+ * \param[in] sInput An input string to be searched for the pattern \a sPattern.
+ * \param[out] vStringOutput The vector that will store the substrings of \a sInput separated by \a sPattern.
+ * \note vsStringOutput is modified by reference.
+ */
 void getStringVector(std::string sPattern, std::string sInput, std::vector<std::string>& vStringOutput)
 {
   if(sInput.rfind(sPattern)<sInput.length() )
