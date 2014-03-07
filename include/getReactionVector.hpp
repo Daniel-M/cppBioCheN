@@ -50,40 +50,48 @@ void getReactionVector(std::string sInput,std::map<std::string,int> mSpecies, st
     
     int iStoichometricCoefficient=1;
     
-    getStringVector("->",sInput,vsComplexBuffer);
+	//getStringVector("->",sInput,vsComplexBuffer);
     
-    for(int i=0;i!=vsComplexBuffer.size();i++)
+	boost::algorithm::erase_all(sInput,"-");
+	boost::algorithm::split(vsComplexBuffer,sInput,boost::algorithm::is_any_of(">"));
+    
+	for(int i=0;i!=vsComplexBuffer.size();i++)
     {
       std::cout << vsComplexBuffer[i] << std::endl;
     }
 
-    getStringVector("+",vsComplexBuffer[0],vsRightCompoundsBuffer);
-    getStringVector("+",vsComplexBuffer[1],vsLeftCompoundsBuffer);
+	boost::algorithm::split(vsRightCompoundsBuffer,vsComplexBuffer[0],boost::algorithm::is_any_of("+"));
+	boost::algorithm::split(vsLeftCompoundsBuffer,vsComplexBuffer[1],boost::algorithm::is_any_of("+"));
+    
+	//getStringVector("+",vsComplexBuffer[0],vsRightCompoundsBuffer);
+	//getStringVector("+",vsComplexBuffer[1],vsLeftCompoundsBuffer);
     
     
     for(int i=0;i!=vsRightCompoundsBuffer.size();i++)
     {
         iStoichometricCoefficient = unStoichem(vsRightCompoundsBuffer[i]);
-        viProducts[mSpecies.at(vsRightCompoundsBuffer[i])-1]=iStoichometricCoefficient;
+        viProducts[mSpecies.at(vsRightCompoundsBuffer[i])]=iStoichometricCoefficient;
     }
     
     for(int i=0;i!=vsLeftCompoundsBuffer.size();i++)
     {
         iStoichometricCoefficient = unStoichem(vsLeftCompoundsBuffer[i]);
-        viReactants[mSpecies.at(vsLeftCompoundsBuffer[i])-1]=iStoichometricCoefficient;
+        viReactants[mSpecies.at(vsLeftCompoundsBuffer[i])]=iStoichometricCoefficient;
     }
 
-	productory(mSpecies,viReactants);
+	
 
     for(int i=0;i!=viResult.size();i++)
     {
         viResult[i]=viProducts[i]-viReactants[i]; 
     }
-    std::cout << "\n";
+	//std::cout << "\n";
+   	
+	productory(mSpecies,viResult); 
     
-    for(int i=0;i!=viResult.size();i++)
+	for(int i=0;i!=viResult.size();i++)
     {
-        std::cout << " " << viResult[i]; 
+       std::cout << " " << viResult[i]; 
     }
     std::cout << "\n";
 

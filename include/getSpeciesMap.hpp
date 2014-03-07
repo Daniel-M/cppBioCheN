@@ -14,26 +14,37 @@
 void getSpeciesMap(std::vector<std::string> vsStringInput, std::map<std::string,int> &mSpecies)
 {
 
-  std::vector<std::string> vSpecies;
+  std::vector<std::string> vsSpecies;
   
   for(int k=0;k!=vsStringInput.size();k++)
   {
-    getStringVector("+",vsStringInput[k],vSpecies);
+	  //getStringVector("+",vsStringInput[k],vsSpecies);
+	  boost::algorithm::split(vsSpecies,vsStringInput[k],boost::algorithm::is_any_of("+"));
   }
+
+  //std::cout << "species " << vsSpecies.size() << std::endl;
+
+  //for(int k=0;k!=vsSpecies.size();k++)
+  //{
+  	//std::cout << k << " look " << vsSpecies[k] << std::endl; 
+  //}
   
   
-  for(int k=0;k!=vSpecies.size();k++)
+  for(int k=0;k!=vsSpecies.size();k++)
   {
-    unStoichem(vSpecies[k]);
+    unStoichem(vsSpecies[k]);
   }
   
-  for(int i=0;i<vSpecies.size();i++)
+  for(int i=0;i<vsSpecies.size();i++)
   {   
-    if(mSpecies.find(vSpecies[i])==mSpecies.end())
+    if(mSpecies.find(vsSpecies[i])==mSpecies.end())
     {
       /* This apply for C++ 11 standard :'( */
-		mSpecies.emplace(vSpecies[i],mSpecies.size()+1);
-	  //mSpecies.insert( std::pair<std::string,int>(vSpecies[i],mSpecies.size()+1));
+		//int iPos = mSpecies.size();
+		//std::cout << vsSpecies[i] << "," << mSpecies.size() << std::endl;
+		//mSpecies.emplace(vsSpecies[i],iPos);
+		mSpecies.emplace(vsSpecies[i],mSpecies.size());
+	    //mSpecies.insert( std::pair<std::string,int>(vsSpecies[i],mSpecies.size()));
 
     }
    }
@@ -47,7 +58,8 @@ void getSpeciesMap(std::string sPattern, std::string sInput, std::map<std::strin
 {
   std::vector<std::string> *vComplex = new std::vector<std::string>;
   
-  getStringVector(sPattern,sInput,*vComplex);
+  //getStringVector(sPattern,sInput,*vComplex);
+  boost::algorithm::split(*vComplex,sInput,boost::algorithm::is_any_of(sPattern));
   getSpeciesMap(*vComplex,mSpecies);
   
   delete(vComplex);

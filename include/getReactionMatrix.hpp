@@ -32,21 +32,25 @@ void  getReactionMatrix(std::vector<std::string> vsSimpleReactions,std::map<std:
 		//insertVectorToMatrix(mNmatrix,i,viReactionVector);
     //}
 	
-    
-    mNmatrix.resize(mSpecies.size(),0);
-    std::vector<int> viReactionVector;
+   	std::cout << mSpecies.size() << "\n";
 
+    mNmatrix.resize(mSpecies.size(),0);
+    std::vector<int> viReactionVector(mSpecies.size());
+
+	//std::cout << " Vector size is " << viReactionVector.size() << std::endl;
 	//std::cout << " Matrix size is " << mNmatrix.size1() << "," << mNmatrix.size2() << std::endl;
 
-    viReactionVector.resize(mSpecies.size());
+	//viReactionVector.resize(mSpecies.size());
 
     for(int i=0;i<vsSimpleReactions.size();i++)
     {
         
-        std::cout << " For reaction " << vsSimpleReactions[i] << std::endl;
+        std::cout << "For reaction " << vsSimpleReactions[i] << std::endl;
         
-        getReactionVector(vsSimpleReactions[i],mSpecies,viReactionVector);
-		productory(mSpecies,viReactionVector);
+		getReactionVector(vsSimpleReactions[i],mSpecies,viReactionVector);
+
+		//productory(mSpecies,viReactionVector);
+
 		mNmatrix = mNmatrix + viReactionVector;
 		//std::cout << mNmatrix << std::endl;
     }

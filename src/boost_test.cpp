@@ -27,7 +27,7 @@ int main(void)
     std::map<std::string,int> mSpecies;
     std::map<std::string,int>::iterator iTmSpecies;
     
-    std::string sLine;
+	std::string sLine;
     
     if(fsInput.is_open() && fsOutput.is_open())
     {
@@ -38,7 +38,7 @@ int main(void)
             
             if(sLine!="")
             {
-                std::cout << sLine << std::endl;
+				//std::cout << sLine << std::endl;
                 getSimpleReactions(sLine,vsSimpleReactions);
             }
         }
@@ -49,7 +49,6 @@ int main(void)
         for(int i=0;i<vsSimpleReactions.size();i++)
         {
             fsOutput << vsSimpleReactions[i] << std::endl;
-            
         }
         
         fsOutput.seekg(fsOutput.beg);
@@ -60,14 +59,15 @@ int main(void)
             
             if(sLine!="")
             {
-                getSpeciesMap("->",sLine,mSpecies);
+				//getSpeciesMap("->",sLine,mSpecies);
+				getSpeciesMap(">",sLine,mSpecies);
             }
         }
         
-        for(iTmSpecies=mSpecies.begin();iTmSpecies != mSpecies.end();iTmSpecies++)
-        {
-            std::cout << " Key " << iTmSpecies->first << " Value " << iTmSpecies->second << std::endl;
-        }
+        //for(iTmSpecies=mSpecies.begin();iTmSpecies != mSpecies.end();iTmSpecies++)
+        //{
+            //std::cout << " Key " << iTmSpecies->first << " Value " << iTmSpecies->second << std::endl;
+        //}
         
         
     }

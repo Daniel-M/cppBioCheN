@@ -1,6 +1,6 @@
-//#include <iostream>
-//#include <string>
-//#include <vector>
+#include <iostream>
+#include <string>
+#include <vector>
 #include "incluidos.hpp"
 
 /**\brief Get a vector of strings sepparated by a pattern
@@ -12,6 +12,12 @@
  */
 void getStringVector(std::string sPattern, std::string sInput, std::vector<std::string>& vStringOutput)
 {
+	//boost::algorithm::split(vStringOutput,sInput,boost::algorithm::is_any_of(sPattern));
+	//}
+
+
+
+	//{
   if(sInput.rfind(sPattern)<sInput.length() )
   {
     /* The right side of sInput */
