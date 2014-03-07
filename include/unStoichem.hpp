@@ -2,6 +2,14 @@
 #include <iomanip>
 #include <algorithm>
 
+/**\brief returns the stochoimetric coefficient of a chemical species on a given reaction
+ *
+ * When dealing with reaction as \a A + \a 2B -> \a 4C the numbers 2 and 4 are interpreted
+ * as stoichometric numbers. They are identified and returned as integers by this function
+ * 
+ * \param sInput Input std::string to be searched for stoichometric coefficient.
+ * \return integer corresponding to the stoichometric coefficient.
+ */
 
 int unStoichem(std::string& sInput)
 {
