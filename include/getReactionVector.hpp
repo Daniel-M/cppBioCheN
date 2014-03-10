@@ -10,33 +10,35 @@
 
 #include "incluidos.hpp"
 
-void productory(std::map<std::string,int> mSpecies, std::vector< int >& viResult)
-{
-	for(int j=0;j!=mSpecies.size();j++)
-	{
-		if(viResult[j] > 0)
-		{
-			if(viResult[j] == 1)
-			{
-				std::cout << "x[" + std::to_string(j) + "]";
-			}
-			else
-			{
-				std::cout << "pow(x[" + std::to_string(j) + "],"+ std::to_string(abs(viResult[j])) + ")";
-			}
-			//std::cout << std::endl;
-		}
-	}
-}
+//void productory(std::map<std::string,int> mSpecies, std::vector< int >& viResult)
+//{
+	//for(int j=0;j!=mSpecies.size();j++)
+	//{
+		//if(viResult[j] > 0)
+		//{
+			//if(viResult[j] == 1)
+			//{
+				//std::cout << "x[" + std::to_string(j) + "]";
+			//}
+			//else
+			//{
+				//std::cout << "pow(x[" + std::to_string(j) + "],"+ std::to_string(abs(viResult[j])) + ")";
+			//}
+			////std::cout << std::endl;
+		//}
+	//}
+//}
 
 void getReactionVector(std::string sInput,std::map<std::string,int> mSpecies, std::vector< int >& viResult)
 {
-    /**
-     * La intención es que la input se divida en dos partes, puesto que solo llega dividida por ->
-     * luego, es preciso detectar las especies indicadas para construir el vector y'-y el cual será
-     * entregado en viResult, pasandolo por referencia, la idea es construir una matriz de reacciones
-     * tal como lo recomienda al artículo de Pablo Villosada de PLoS
-     **/
+    
+	
+	///**
+     //* La intención es que la input se divida en dos partes, puesto que solo llega dividida por ->
+     //* luego, es preciso detectar las especies indicadas para construir el vector y'-y el cual será
+     //* entregado en viResult, pasandolo por referencia, la idea es construir una matriz de reacciones
+     //* tal como lo recomienda al artículo de Pablo Villosada de PLoS
+     //**/
     
     
     std::vector<std::string> vsComplexBuffer;
@@ -50,48 +52,42 @@ void getReactionVector(std::string sInput,std::map<std::string,int> mSpecies, st
     
     int iStoichometricCoefficient=1;
     
-	//getStringVector("->",sInput,vsComplexBuffer);
-    
 	boost::algorithm::erase_all(sInput,"-");
 	boost::algorithm::split(vsComplexBuffer,sInput,boost::algorithm::is_any_of(">"));
     
 	for(int i=0;i!=vsComplexBuffer.size();i++)
     {
-      std::cout << vsComplexBuffer[i] << std::endl;
+    	std::cout << vsComplexBuffer[i] << std::endl;
     }
 
 	boost::algorithm::split(vsRightCompoundsBuffer,vsComplexBuffer[0],boost::algorithm::is_any_of("+"));
 	boost::algorithm::split(vsLeftCompoundsBuffer,vsComplexBuffer[1],boost::algorithm::is_any_of("+"));
     
-	//getStringVector("+",vsComplexBuffer[0],vsRightCompoundsBuffer);
-	//getStringVector("+",vsComplexBuffer[1],vsLeftCompoundsBuffer);
-    
-    
     for(int i=0;i!=vsRightCompoundsBuffer.size();i++)
     {
-        iStoichometricCoefficient = unStoichem(vsRightCompoundsBuffer[i]);
-        viProducts[mSpecies.at(vsRightCompoundsBuffer[i])]=iStoichometricCoefficient;
+    	iStoichometricCoefficient = unStoichem(vsRightCompoundsBuffer[i]);
+    	viProducts[mSpecies.at(vsRightCompoundsBuffer[i])]=iStoichometricCoefficient;
     }
     
     for(int i=0;i!=vsLeftCompoundsBuffer.size();i++)
     {
-        iStoichometricCoefficient = unStoichem(vsLeftCompoundsBuffer[i]);
-        viReactants[mSpecies.at(vsLeftCompoundsBuffer[i])]=iStoichometricCoefficient;
+    	iStoichometricCoefficient = unStoichem(vsLeftCompoundsBuffer[i]);
+    	viReactants[mSpecies.at(vsLeftCompoundsBuffer[i])]=iStoichometricCoefficient;
     }
 
 	
 
     for(int i=0;i!=viResult.size();i++)
     {
-        viResult[i]=viProducts[i]-viReactants[i]; 
+    	viResult[i]=viProducts[i]-viReactants[i]; 
     }
 	//std::cout << "\n";
    	
-	productory(mSpecies,viResult); 
+	//productory(mSpecies,viResult); 
     
 	for(int i=0;i!=viResult.size();i++)
     {
-       std::cout << " " << viResult[i]; 
+    	std::cout << " " << viResult[i]; 
     }
     std::cout << "\n";
 

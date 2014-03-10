@@ -10,24 +10,24 @@
 
 #include "incluidos.hpp"
 
-//void productory(std::map<std::string,int> mSpecies, std::vector< int >& viResult)
-//{
-	//for(int j=0;j!=mSpecies.size();j++)
-	//{
-		//if(viResult[j] > 0)
-		//{
-			//if(viResult[j] == 1)
-			//{
-				//std::cout << "x[" + NumberToString(j) + "]";
-			//}
-			//else
-			//{
-				//std::cout << "pow(x[" + NumberToString(j) + "],"+ NumberToString(viResult[j]) + ")";
-			//}
-		//}
-	//}
-//}
-
+void productory(std::map<std::string,int> mSpecies, std::vector< int >& viResult)
+{
+	for(int j=0;j!=mSpecies.size();j++)
+	{
+		if(viResult[j] > 0)
+		{
+			if(viResult[j] == 1)
+			{
+				std::cout << "x[" + std::to_string(j) + "]";
+			}
+			else
+			{
+				std::cout << "pow(x[" + std::to_string(j) + "],"+ std::to_string(abs(viResult[j])) + ")";
+			}
+			//std::cout << std::endl;
+		}
+	}
+}
 
 void getMassActionLawKinetics(std::map<std::string,int> mSpecies/*, std::vector< int >& viResult*/)
 {

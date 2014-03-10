@@ -1,2 +1,3 @@
-C+X0<->X1
-X1->P+X0
+Ca+Dye<->CaDye
+Ca+Trop<->CaTrop
+Ca+Parv<=>CaParv

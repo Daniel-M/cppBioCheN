@@ -39,6 +39,11 @@
   #include "getReactionVector.hpp"
 #endif
 
+#ifndef GET_PRODUCTS_VECTOR
+  #define GET_PRODUCTS_VECTOR
+  #include "getProductsVector.hpp"
+#endif
+
 #ifndef GET_SIMPLE_REACTIONS
   #define GET_SIMPLE_REACTIONS
   #include "getSimpleReactions.hpp"
@@ -47,11 +52,6 @@
 #ifndef GET_SPECIES_MAP
   #define GET_SPECIES_MAP
   #include "getSpeciesMap.hpp"
-#endif
-
-#ifndef GET_STRING_VECTOR
-  #define GET_STRING_VECTOR
-  #include "getStringVector.hpp"
 #endif
 
 #ifndef OVERLOADED_MATRIX
