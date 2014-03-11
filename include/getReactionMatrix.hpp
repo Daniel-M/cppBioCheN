@@ -10,33 +10,14 @@
 
 #include "incluidos.hpp"
 
-
-
 void  getReactionMatrix(std::vector<std::string> vsSimpleReactions,std::map<std::string,int> mSpecies, boost::numeric::ublas::matrix<int>& mNmatrix)
 {
-    //mNmatrix.resize(mSpecies.size(),vsSimpleReactions.size());
-    
-    //std::vector<int> viReactionVector;
-
-    //std::cout << " Matrix size is " << mNmatrix.size1() << "," << mNmatrix.size2() << std::endl;
-
-    //fillVector(viReactionVector,0,mSpecies.size());
-
-    //for(int i=0;i<vsSimpleReactions.size();i++)
-    //{
-        
-        //std::cout << " For reaction " << vsSimpleReactions[i] << std::endl;
-        
-        //getReactionVector(vsSimpleReactions[i],mSpecies,viReactionVector);
-        
-		//insertVectorToMatrix(mNmatrix,i,viReactionVector);
-    //}
-	
    	std::cout << mSpecies.size() << "\n";
 
     mNmatrix.resize(mSpecies.size(),0);
+    std::vector<int> viReactantsVector(mSpecies.size());
+    std::vector<int> viProductsVector(mSpecies.size());
     std::vector<int> viReactionVector(mSpecies.size());
-    std::vector<int> viReactionVectorr(mSpecies.size());
 
 	//std::cout << " Vector size is " << viReactionVector.size() << std::endl;
 	//std::cout << " Matrix size is " << mNmatrix.size1() << "," << mNmatrix.size2() << std::endl;
@@ -48,10 +29,21 @@ void  getReactionMatrix(std::vector<std::string> vsSimpleReactions,std::map<std:
         
         std::cout << "For reaction " << vsSimpleReactions[i] << std::endl;
         
-		getReactionVector(vsSimpleReactions[i],mSpecies,viReactionVector);
-		getProductsVector(vsSimpleReactions[i],mSpecies,viReactionVectorr);
+		getReactantsVector(vsSimpleReactions[i],mSpecies,viReactantsVector);
+		getProductsVector(vsSimpleReactions[i],mSpecies,viProductsVector);
 
 		//productory(mSpecies,viReactionVector);
+		
+		viReactionVector = viProductsVector - viReactantsVector;
+
+		std::cout << "Reaction\n";
+
+		for(int j=0;j!=viReactionVector.size();j++)
+		{
+			std::cout << " " << viReactionVector[j];
+		}
+
+		std::cout << std::endl;
 
 		mNmatrix = mNmatrix + viReactionVector;
 		//std::cout << mNmatrix << std::endl;

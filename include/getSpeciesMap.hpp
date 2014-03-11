@@ -18,17 +18,9 @@ void getSpeciesMap(std::vector<std::string> vsStringInput, std::map<std::string,
   
   for(int k=0;k!=vsStringInput.size();k++)
   {
-	  //getStringVector("+",vsStringInput[k],vsSpecies);
 	  boost::algorithm::split(vsSpecies,vsStringInput[k],boost::algorithm::is_any_of("+"));
   }
 
-  //std::cout << "species " << vsSpecies.size() << std::endl;
-
-  //for(int k=0;k!=vsSpecies.size();k++)
-  //{
-  	//std::cout << k << " look " << vsSpecies[k] << std::endl; 
-  //}
-  
   
   for(int k=0;k!=vsSpecies.size();k++)
   {
@@ -39,11 +31,10 @@ void getSpeciesMap(std::vector<std::string> vsStringInput, std::map<std::string,
   {   
     if(mSpecies.find(vsSpecies[i])==mSpecies.end())
     {
-      /* This apply for C++ 11 standard :'( */
-		//int iPos = mSpecies.size();
+      
 		//std::cout << vsSpecies[i] << "," << mSpecies.size() << std::endl;
-		//mSpecies.emplace(vsSpecies[i],iPos);
-		mSpecies.emplace(vsSpecies[i],mSpecies.size());
+	    /* This apply for C++ 11 standard */
+	    mSpecies.emplace(vsSpecies[i],mSpecies.size());
 	    //mSpecies.insert( std::pair<std::string,int>(vsSpecies[i],mSpecies.size()));
 
     }
@@ -54,11 +45,9 @@ void getSpeciesMap(std::vector<std::string> vsStringInput, std::map<std::string,
  * \overload This function maps chemical species given a string as input.
  */
 void getSpeciesMap(std::string sPattern, std::string sInput, std::map<std::string,int> &mSpecies)
-//(std::vector<std::string> vsStringInput, std::map<std::string,int> &mSpecies)
 {
   std::vector<std::string> *vComplex = new std::vector<std::string>;
   
-  //getStringVector(sPattern,sInput,*vComplex);
   boost::algorithm::split(*vComplex,sInput,boost::algorithm::is_any_of(sPattern));
   getSpeciesMap(*vComplex,mSpecies);
   

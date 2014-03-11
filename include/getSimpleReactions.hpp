@@ -34,9 +34,6 @@ void getSimpleReactions(std::string sInput,std::vector<std::string>& vsSimpleRea
 
 	boost::algorithm::erase_all(sInput," ");
 	boost::algorithm::to_upper(sInput);
-	
-	//std::cout << sInput << std::endl;
-
 	boost::algorithm::erase_all(sInput,"-");
 	boost::algorithm::erase_all(sInput,"=");
 
@@ -76,7 +73,6 @@ void getSimpleReactions(std::string sInput,std::vector<std::string>& vsSimpleRea
 		boost::algorithm::erase_all(vsReactBackward[j],"<");
 	}
 
-	//std::cout << vsReactForward.size() << "," << vsReactBackward.size() <<  " = " << vsReactForward.size()+vsReactBackward.size() <<  std::endl;
 
 	for(int i=0;i<vsReactForward.size();i++)
 	//for(int i=vsReactForward.size()-1;i>=0;i--)
@@ -89,9 +85,4 @@ void getSimpleReactions(std::string sInput,std::vector<std::string>& vsSimpleRea
 	{
 		vsSimpleReactions.push_back(vsReactBackward[i]);
 	}
-	//for(int j=0;j<vsSimpleReactions.size();j++)
-	//{
-		
-		//boost::algorithm::erase_all(vsSimpleReactions[j],"-");
-	//}
 }	

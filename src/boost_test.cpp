@@ -64,10 +64,10 @@ int main(void)
             }
         }
         
-        //for(iTmSpecies=mSpecies.begin();iTmSpecies != mSpecies.end();iTmSpecies++)
-        //{
-            //std::cout << " Key " << iTmSpecies->first << " Value " << iTmSpecies->second << std::endl;
-        //}
+        for(iTmSpecies=mSpecies.begin();iTmSpecies != mSpecies.end();iTmSpecies++)
+        {
+            std::cout << " Key " << iTmSpecies->first << " Value " << iTmSpecies->second << std::endl;
+        }
         
         
     }
@@ -80,9 +80,9 @@ int main(void)
   std::cout << "\n";
   std::cout << cN;
   std::cout << "\n";
-  
 	
-  getMassActionLawKinetics(mSpecies);
+
+  getMassActionLawKinetics(mSpecies,cN);
 
 
 

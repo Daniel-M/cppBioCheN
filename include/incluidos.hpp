@@ -23,10 +23,14 @@
 #include <boost/algorithm/string/classification.hpp> 
 
 
+#ifndef GET_SIMPLE_REACTIONS
+  #define GET_SIMPLE_REACTIONS
+  #include "getSimpleReactions.hpp"
+#endif
 
-#ifndef GET_MASS_ACTION_LAW_KINETICS
-  #define GET_MASS_ACTION_LAW_KINETICS
-  #include "getMassActionLawKinetics.hpp"
+#ifndef GET_SPECIES_MAP
+  #define GET_SPECIES_MAP
+  #include "getSpeciesMap.hpp"
 #endif
 
 #ifndef GET_REACTION_MATRIX
@@ -36,7 +40,7 @@
 
 #ifndef GET_REACTION_VECTOR
   #define GET_REACTION_VECTOR
-  #include "getReactionVector.hpp"
+  #include "getReactantsVector.hpp"
 #endif
 
 #ifndef GET_PRODUCTS_VECTOR
@@ -44,14 +48,14 @@
   #include "getProductsVector.hpp"
 #endif
 
-#ifndef GET_SIMPLE_REACTIONS
-  #define GET_SIMPLE_REACTIONS
-  #include "getSimpleReactions.hpp"
+#ifndef GET_MASS_ACTION_LAW_KINETICS
+  #define GET_MASS_ACTION_LAW_KINETICS
+  #include "getMassActionLawKinetics.hpp"
 #endif
 
-#ifndef GET_SPECIES_MAP
-  #define GET_SPECIES_MAP
-  #include "getSpeciesMap.hpp"
+#ifndef OVERLOADED_VECTOR
+  #define OVERLOADED_VECTOR
+  #include "overloadedVector.hpp"
 #endif
 
 #ifndef OVERLOADED_MATRIX
@@ -64,3 +68,7 @@
   #include "unStoichem.hpp"
 #endif
 
+#ifndef NUMBER_TO_STRING
+  #define NUMBER_TO_STRING
+  #include "numberToString.hpp"
+#endif

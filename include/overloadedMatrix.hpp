@@ -3,34 +3,34 @@
 //#include <boost/numeric/ublas/io.hpp>
 #include "incluidos.hpp"
 
-/**\brief This function converts a number data type like \a int, \a float, or\a double to \a std::string.
- *        The result it's used on symbolic multiplications of boost::numeric::ublas::matrix.
- *
- * This function converts a number data type to a \a std::string, so the result it's used on symbolic
- * multiplications of boost::numeric::ublas::matrix. When the number is +1 it just returns "", when
- * the number is -1, the function returns "-".
- *
- * \tparam[in] number Number data type to be converted to \a std::string.
- * \return \a std::string of the number given. If the number
- */
-template <typename T>
-std::string NumberToString (const T& number)
-{
-    std::ostringstream ss;
-    ss << number;
-	if (ss.str() == "1")
-	{
-		return "";
-	}
-	else if (ss.str() == "-1")
-	{
-		return "-";
-	}
-	else
-	{
-	    return ss.str()+ "*";
-	}
-}
+///**\brief This function converts a number data type like \a int, \a float, or\a double to \a std::string.
+ //*        The result it's used on symbolic multiplications of boost::numeric::ublas::matrix.
+ //*
+ //* This function converts a number data type to a \a std::string, so the result it's used on symbolic
+ //* multiplications of boost::numeric::ublas::matrix. When the number is +1 it just returns "", when
+ //* the number is -1, the function returns "-".
+ //*
+ //* \tparam[in] number Number data type to be converted to \a std::string.
+ //* \return \a std::string of the number given. If the number
+ //*/
+//template <typename T>
+//std::string numberToString (const T& number)
+//{
+    //std::ostringstream ss;
+    //ss << number;
+	//if (ss.str() == "1")
+	//{
+		//return "";
+	//}
+	//else if (ss.str() == "-1")
+	//{
+		//return "-";
+	//}
+	//else
+	//{
+	    //return ss.str()+ "*";
+	//}
+//}
 
 /**\brief This function overloads the boost::numeric::ublas::matrix::operator* to allow products between different matrix types
  *
@@ -39,7 +39,7 @@ std::string NumberToString (const T& number)
  * The function iterates the product just as defined by standard matrix multiplication, for a matrix
  * \f[ c_{i,j} = \sum_{k=1}a_{i,k}b_{k,j}\f]
  *
- * \relates NumberToString
+ * \relates numberToString
  *
  * \tparam[in] matrix1 Matrix of atemplate type. \a int,\a float, or\a double expected.i
  * \param[in] matrix2 A \a std::string matrix
@@ -62,15 +62,15 @@ boost::numeric::ublas::matrix<std::string> operator*(const boost::numeric::ublas
                 {
                     if (matrix1(i, k) != 0)
                     {
-                        if (NumberToString(matrix1(i, k)).substr(0, 1) == "-")
-							//sBuffer += NumberToString(matrix1(i,k)) + "*" + matrix2(k,j) ;
-							sBuffer += NumberToString(matrix1(i,k)) + matrix2(k,j) ;
+                        if (numberToString(matrix1(i, k)).substr(0, 1) == "-")
+							//sBuffer += numberToString(matrix1(i,k)) + "*" + matrix2(k,j) ;
+							sBuffer += numberToString(matrix1(i,k)) + matrix2(k,j) ;
                         else if (sBuffer.size() < 1)
-							//sBuffer += NumberToString(matrix1(i,k)) + "*" + matrix2(k,j) ;
-							sBuffer += NumberToString(matrix1(i,k)) + matrix2(k,j) ;
+							//sBuffer += numberToString(matrix1(i,k)) + "*" + matrix2(k,j) ;
+							sBuffer += numberToString(matrix1(i,k)) + matrix2(k,j) ;
                         else
-							//sBuffer += "+" + NumberToString(matrix1(i,k)) + "*" + matrix2(k,j) ;
-							sBuffer += "+" + NumberToString(matrix1(i,k)) + matrix2(k,j) ;
+							//sBuffer += "+" + numberToString(matrix1(i,k)) + "*" + matrix2(k,j) ;
+							sBuffer += "+" + numberToString(matrix1(i,k)) + matrix2(k,j) ;
                     }
                 }
                 result(i, j) = sBuffer;
@@ -105,16 +105,16 @@ boost::numeric::ublas::matrix<std::string> operator*(const boost::numeric::ublas
                 {
                     if (matrix2(k, j) != 0)
                     {
-						//if (NumberToString(matrix2(i, k)).substr(0, 1) == "-")
+						//if (numberToString(matrix2(i, k)).substr(0, 1) == "-")
 						if (std::to_string(matrix2(i,k)).substr(0,1) == "-")
-							sBuffer += NumberToString(matrix2(k,j)) + matrix1(i,k) ;
-							//sBuffer += NumberToString(matrix2(k,j)) + "*" + matrix1(i,k) ;
+							sBuffer += numberToString(matrix2(k,j)) + matrix1(i,k) ;
+							//sBuffer += numberToString(matrix2(k,j)) + "*" + matrix1(i,k) ;
                         else if (sBuffer.size() < 1)
-							sBuffer += NumberToString(matrix2(k,j)) + matrix1(i,k) ;
-							//sBuffer += NumberToString(matrix2(k,j)) + "*" + matrix1(i,k) ;
+							sBuffer += numberToString(matrix2(k,j)) + matrix1(i,k) ;
+							//sBuffer += numberToString(matrix2(k,j)) + "*" + matrix1(i,k) ;
                         else
-							sBuffer += "+" + NumberToString(matrix2(k,j)) + matrix1(i,k) ;
-							//sBuffer += "+" + NumberToString(matrix2(k,j)) + "*" + matrix1(i,k) ;
+							sBuffer += "+" + numberToString(matrix2(k,j)) + matrix1(i,k) ;
+							//sBuffer += "+" + numberToString(matrix2(k,j)) + "*" + matrix1(i,k) ;
                     }
                 }
                 result(i, j) = sBuffer;
