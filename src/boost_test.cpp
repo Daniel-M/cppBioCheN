@@ -52,25 +52,34 @@ std::string KinF(std::string sSimpleReaction,std::map<std::string,int> mSpecies)
 			delete(sVar);
 		}
 
-		//if(iTmSpecies->second < mSpecies.size() && viReactantsVector[iTmSpecies->second] >= 1)
-		//{
-			//sKinect += "*";
-		//}
+		if(iTmSpecies->second < mSpecies.size() && viReactantsVector[iTmSpecies->second] >= 1)
+		{
+			sKinect += "*";
+		}
 
 	}
 
 		//return sKinect;
-	return sKinect.substr(0,sKinect.size());
+	return sKinect.substr(0,sKinect.size()-1);
 }
 
-void KinPut(std::vector<std::string> vsSimpleReactions, std::map<std::string,int> mSpecies, std::map<std::string,std::string>& mKinetics)
+std::vector<std::string> /*void*/ KinPut(std::vector<std::string> vsSimpleReactions, std::map<std::string,int> mSpecies, std::map<std::string,std::string>& mKinetics)
 {
+
+	std::vector<std::string> vsR;
+
 	for(int j=0;j!=vsSimpleReactions.size();j++)
 	{
 		//KinF(vsSimpleReactions[j],mSpecies);
-		std::cout << KinF(vsSimpleReactions[j],mSpecies) << std::endl;
-		//mKinetics.emplace(vsSimpleReactions[j],KinF(vsSimpleReactions[j],mSpecies));
+		//std::cout << KinF(vsSimpleReactions[j],mSpecies) << std::endl;
+		vsR.push_back(KinF(vsSimpleReactions[j],mSpecies));
+		//std::cout << vsR[j] << std::cout;
+		mKinetics.emplace(vsSimpleReactions[j],KinF(vsSimpleReactions[j],mSpecies));
 	}
+
+	std::cout << vsR << std::endl;
+
+	return vsR;
 }
 
 
@@ -145,8 +154,11 @@ int main(void)
   std::cout << "\n";
 	
   std::map<std::string,std::string> mKinetics;
+  std::vector<std::string> vsR;
+ 
+  vsR = KinPut(vsSimpleReactions,mSpecies,mKinetics);
 
-  KinPut(vsSimpleReactions,mSpecies,mKinetics);
+  cN*vsR;
 
   return 0;
   
