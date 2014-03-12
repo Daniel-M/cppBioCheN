@@ -6,7 +6,7 @@ void getReactantsVector(std::string sInput,std::map<std::string,int> mSpecies, s
     std::vector<std::string> vsLeftCompoundsBuffer;
     std::vector<int> viProducts;
     
-    viProducts.resize(viResult.size());
+    viProducts.resize(mSpecies.size());
     
     int iStoichometricCoefficient=1;
     

@@ -6,7 +6,7 @@ void getProductsVector(std::string sInput,std::map<std::string,int> mSpecies, st
     std::vector<std::string> vsRightCompoundsBuffer;
     std::vector<int> viReactants;
     
-    viReactants.resize(viResult.size());
+    viReactants.resize(mSpecies.size());
     
     int iStoichometricCoefficient=1;
     

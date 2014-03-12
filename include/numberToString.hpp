@@ -25,6 +25,16 @@ std::string numberToString (const T& number)
 	}
 	else
 	{
-	    return ss.str()+ "*";
+	    return ss.str() + "*";
 	}
+}
+
+template <typename T>
+std::string numberToString (const T& number,bool bVar)
+{
+    std::ostringstream ss;
+    
+	ss << number;
+	
+	return ss.str();
 }

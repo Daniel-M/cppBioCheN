@@ -14,6 +14,67 @@
 
 using namespace std;
 
+std::string KinF(std::string sSimpleReaction,std::map<std::string,int> mSpecies)
+{
+	std::map<std::string,int>::iterator iTmSpecies;
+		
+	std::vector<int> viReactantsVector;
+
+	getReactantsVector(sSimpleReaction,mSpecies,viReactantsVector);
+	
+	std::string sVarName("x");
+	std::string sPow("pow");
+
+	std::string sKinect("");
+
+	for(iTmSpecies=mSpecies.begin();iTmSpecies != mSpecies.end();iTmSpecies++)
+	{
+		
+		if(viReactantsVector[iTmSpecies->second] > 1)
+		{
+			std::string *sIndex = new std::string(numberToString(iTmSpecies->second,true));
+			std::string *sVar = new std::string(sVarName+"[" + *sIndex + "]");
+			std::string *sExponent = new std::string(numberToString(viReactantsVector[iTmSpecies->second],true));
+			sKinect = sKinect + sPow + "(" + *sVar + "," + *sExponent + ")";
+
+			delete(sIndex);
+			delete(sVar);
+			delete(sExponent);
+
+		}
+		else if (viReactantsVector[iTmSpecies->second] == 1)
+		{
+			std::string *sIndex = new std::string(numberToString(iTmSpecies->second,true));
+			std::string *sVar = new std::string(sVarName+"[" + *sIndex + "]");
+			sKinect = sKinect + *sVar;
+		
+			delete(sIndex);
+			delete(sVar);
+		}
+
+		//if(iTmSpecies->second < mSpecies.size() && viReactantsVector[iTmSpecies->second] >= 1)
+		//{
+			//sKinect += "*";
+		//}
+
+	}
+
+		//return sKinect;
+	return sKinect.substr(0,sKinect.size());
+}
+
+void KinPut(std::vector<std::string> vsSimpleReactions, std::map<std::string,int> mSpecies, std::map<std::string,std::string>& mKinetics)
+{
+	for(int j=0;j!=vsSimpleReactions.size();j++)
+	{
+		//KinF(vsSimpleReactions[j],mSpecies);
+		std::cout << KinF(vsSimpleReactions[j],mSpecies) << std::endl;
+		//mKinetics.emplace(vsSimpleReactions[j],KinF(vsSimpleReactions[j],mSpecies));
+	}
+}
+
+
+
 int main(void)
 {
 	std::fstream fsInput;
@@ -26,6 +87,8 @@ int main(void)
     
     std::map<std::string,int> mSpecies;
     std::map<std::string,int>::iterator iTmSpecies;
+
+    
     
 	std::string sLine;
     
@@ -81,11 +144,9 @@ int main(void)
   std::cout << cN;
   std::cout << "\n";
 	
+  std::map<std::string,std::string> mKinetics;
 
-  getMassActionLawKinetics(mSpecies,cN);
-
-
-
+  KinPut(vsSimpleReactions,mSpecies,mKinetics);
 
   return 0;
   

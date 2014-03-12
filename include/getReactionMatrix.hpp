@@ -32,8 +32,6 @@ void  getReactionMatrix(std::vector<std::string> vsSimpleReactions,std::map<std:
 		getReactantsVector(vsSimpleReactions[i],mSpecies,viReactantsVector);
 		getProductsVector(vsSimpleReactions[i],mSpecies,viProductsVector);
 
-		//productory(mSpecies,viReactionVector);
-		
 		viReactionVector = viProductsVector - viReactantsVector;
 
 		std::cout << "Reaction\n";

@@ -13,24 +13,6 @@
  //* \tparam[in] number Number data type to be converted to \a std::string.
  //* \return \a std::string of the number given. If the number
  //*/
-//template <typename T>
-//std::string numberToString (const T& number)
-//{
-    //std::ostringstream ss;
-    //ss << number;
-	//if (ss.str() == "1")
-	//{
-		//return "";
-	//}
-	//else if (ss.str() == "-1")
-	//{
-		//return "-";
-	//}
-	//else
-	//{
-	    //return ss.str()+ "*";
-	//}
-//}
 
 /**\brief This function overloads the boost::numeric::ublas::matrix::operator* to allow products between different matrix types
  *
