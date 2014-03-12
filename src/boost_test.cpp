@@ -179,12 +179,12 @@ int main(void)
   for(iTmSpecies=mSpecies.begin();iTmSpecies != mSpecies.end();iTmSpecies++)
   {
 	  //std::cout << " Key " << iTmSpecies->first << " Value " << iTmSpecies->second << std::endl;
-	  mSpeciesKin.emplace(iTmSpecies->first,"dx["+numberToString(iTmSpecies->second,true) +"]/dt = " + (cN*vsR)(iTmSpecies->second,0));
+	  mSpeciesKin.emplace(iTmSpecies->first,"dxdt["+numberToString(iTmSpecies->second,true) +"]= " + (cN*vsR)(iTmSpecies->second,0));
   }
 
   for(iTKin=mSpeciesKin.begin();iTKin != mSpeciesKin.end();iTKin++)
   {
-    std::cout << " Key " << iTKin->first << " Value " << iTKin->second << std::endl;
+    std::cout <</* " Key " << iTKin->first << " Value " << */iTKin->second << std::endl;
   }
   
   return 0;
