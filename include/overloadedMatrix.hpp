@@ -3,6 +3,8 @@
 //#include <boost/numeric/ublas/io.hpp>
 #include "incluidos.hpp"
 
+
+
 ///**\brief This function converts a number data type like \a int, \a float, or\a double to \a std::string.
  //*        The result it's used on symbolic multiplications of boost::numeric::ublas::matrix.
  //*
@@ -29,18 +31,18 @@
  */
 template <class T>
 boost::numeric::ublas::matrix<std::string> operator*(const boost::numeric::ublas::matrix<T>& matrix1, const boost::numeric::ublas::matrix<std::string>& matrix2)
-{
+{ 
     if (matrix1.size2() == matrix2.size1())
     {
         boost::numeric::ublas::matrix<std::string> result(matrix1.size1(), matrix2.size2());
 
         std::string sBuffer;
 
-        for (int i=0; i != matrix1.size2(); i++)
+        for (int i=0; i != matrix1.size1(); i++)
         {
-            for (int j=0; j != matrix2.size1(); j++)
+            for (int j=0; j != matrix2.size2(); j++)
             {
-                for (int k=0; k != matrix1.size1(); k++)
+                for (int k=0; k != matrix1.size2(); k++)
                 {
                     if (matrix1(i, k) != 0)
                     {
@@ -149,18 +151,16 @@ boost::numeric::ublas::matrix<T> operator + (const boost::numeric::ublas::matrix
 	return resultMatrix;
 }
 
-/**\brief This function overloads the boost::numeric::ublas::matrix::operator* to allow products between different matrix types
+/**\brief This function overloads the boost::numeric::ublas::matrix::operator* to allow products between ublas matrices and std::vectors
  *
  * This function overloads the boost::numeric::ublas::matrix::operator* in order to allow matrix products between
- * different data types, but it returns boost::numeric::ublas::matrix<\a std::string >.
- * The function iterates the product just as defined by standard matrix multiplication, for a matrix
- * \f[ c_{i,j} = \sum_{k=1}a_{i,k}b_{k,j}\f]
- *
- * \relates numberToString
+ * ublas matrices and std::vectors. The function returns boost::numeric::ublas::matrix<\a std::string >.
+ * The function allocates a Matrix using the overloaded boost::numeric::ublas::matrix::operator+i to append vectors.
+ * it creates a matrix and uses the overloaded boost::numeric::ublas::matrix::operator* defined for matrices.
  *
  * \tparam[in] matrix1 Matrix of atemplate type. \a int,\a float, or\a double expected.i
- * \param[in] matrix2 A \a std::string matrix
- * \return A matrix made up of \a std::string, as the result of the multiplication of matrix1 and matrix2
+ * \param[in] vsVector A string vector to be multiplied.
+ * \return A matrix made up of \a std::string, as the result of the multiplication of matrix1 and vsVector.
  */
 template <class T>
 boost::numeric::ublas::matrix<std::string> operator*(const boost::numeric::ublas::matrix<T>& matrix1, const std::vector<std::string>& vsVector)
@@ -169,12 +169,18 @@ boost::numeric::ublas::matrix<std::string> operator*(const boost::numeric::ublas
 
 	Matrix = Matrix + vsVector;
 
-	//std::cout << Matrix.size1() << "," << Matrix.size2() << "\n";
+	//std::cout << "Products\n";
 
-	std::cout << Matrix;
+	//std::cout << matrix1 << " " << matrix1.size1() << "," << matrix1.size2() << std::endl;
+	
+	//std::cout << Matrix << " " << Matrix.size1() << "," << Matrix.size2() << std::endl;
+
+	//std::cout << (matrix1*Matrix) << std::endl;
+
+	//std::cout << Matrix*matrix1 << std::endl;
 
 	return (matrix1*Matrix);
-	
+	//return Matrix;
 }
 
 

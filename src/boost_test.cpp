@@ -24,8 +24,10 @@ std::string KinF(std::string sSimpleReaction,std::map<std::string,int> mSpecies)
 	
 	std::string sVarName("x");
 	std::string sPow("pow");
+	
 
 	std::string sKinect("");
+
 
 	for(iTmSpecies=mSpecies.begin();iTmSpecies != mSpecies.end();iTmSpecies++)
 	{
@@ -56,7 +58,6 @@ std::string KinF(std::string sSimpleReaction,std::map<std::string,int> mSpecies)
 		{
 			sKinect += "*";
 		}
-
 	}
 
 		//return sKinect;
@@ -67,17 +68,19 @@ std::vector<std::string> /*void*/ KinPut(std::vector<std::string> vsSimpleReacti
 {
 
 	std::vector<std::string> vsR;
+	std::string sParameter("k");
 
 	for(int j=0;j!=vsSimpleReactions.size();j++)
 	{
 		//KinF(vsSimpleReactions[j],mSpecies);
 		//std::cout << KinF(vsSimpleReactions[j],mSpecies) << std::endl;
-		vsR.push_back(KinF(vsSimpleReactions[j],mSpecies));
+		//vsR.push_back(KinF(vsSimpleReactions[j],mSpecies));
 		//std::cout << vsR[j] << std::cout;
-		mKinetics.emplace(vsSimpleReactions[j],KinF(vsSimpleReactions[j],mSpecies));
+		vsR.push_back( sParameter + "[" + numberToString(j,true) + "]*" + KinF(vsSimpleReactions[j],mSpecies));
+		mKinetics.emplace(vsSimpleReactions[j],vsR[j]);
 	}
 
-	std::cout << vsR << std::endl;
+	//std::cout << vsR << std::endl;
 
 	return vsR;
 }
@@ -145,7 +148,8 @@ int main(void)
     }
   
   boost::numeric::ublas::matrix<int> cN;
-    
+  boost::numeric::ublas::matrix<std::string> V;
+
   getReactionMatrix(vsSimpleReactions,mSpecies,cN);
   
   std::cout << "\n";
@@ -154,12 +158,35 @@ int main(void)
   std::cout << "\n";
 	
   std::map<std::string,std::string> mKinetics;
+  std::map<std::string,std::string>::iterator iTKin;
   std::vector<std::string> vsR;
  
   vsR = KinPut(vsSimpleReactions,mSpecies,mKinetics);
 
-  cN*vsR;
+  //V=V*vsR;
 
+  //std::cout << V << "\n";
+
+  //std::cout << cN*vsR << "\n";
+
+  //for(iTKin=mKinetics.begin();iTKin != mKinetics.end();iTKin++)
+  //{
+    //std::cout << " Key " << iTKin->first << " Value " << iTKin->second << std::endl;
+  //}
+	
+  std::map<std::string,std::string> mSpeciesKin;
+
+  for(iTmSpecies=mSpecies.begin();iTmSpecies != mSpecies.end();iTmSpecies++)
+  {
+	  //std::cout << " Key " << iTmSpecies->first << " Value " << iTmSpecies->second << std::endl;
+	  mSpeciesKin.emplace(iTmSpecies->first,"dx["+numberToString(iTmSpecies->second,true) +"]/dt = " + (cN*vsR)(iTmSpecies->second,0));
+  }
+
+  for(iTKin=mSpeciesKin.begin();iTKin != mSpeciesKin.end();iTKin++)
+  {
+    std::cout << " Key " << iTKin->first << " Value " << iTKin->second << std::endl;
+  }
+  
   return 0;
   
 
