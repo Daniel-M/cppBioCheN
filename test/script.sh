@@ -1,4 +1,4 @@
-g++ chemical.cpp -o chemical
+g++ chemical.cpp --std=c++11 -o chemical
 ./chemical > resultados.txt
 awk '{print $1,$2}' resultados.txt > var1.txt
 awk '{print $1,$3}' resultados.txt > var2.txt

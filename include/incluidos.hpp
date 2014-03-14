@@ -23,6 +23,11 @@
 #include <boost/algorithm/string/classification.hpp> 
 
 
+#ifndef GET_MASS_ACTION_LAW_EQUATIONS
+  #define GET_MASS_ACTION_LAW_EQUATIONS
+  #include "getMassActionLawEquations.hpp"
+#endif
+
 #ifndef GET_SIMPLE_REACTIONS
   #define GET_SIMPLE_REACTIONS
   #include "getSimpleReactions.hpp"
@@ -46,11 +51,6 @@
 #ifndef GET_PRODUCTS_VECTOR
   #define GET_PRODUCTS_VECTOR
   #include "getProductsVector.hpp"
-#endif
-
-#ifndef GET_MASS_ACTION_LAW_KINETICS
-  #define GET_MASS_ACTION_LAW_KINETICS
-  #include "getMassActionLawKinetics.hpp"
 #endif
 
 #ifndef OVERLOADED_VECTOR
