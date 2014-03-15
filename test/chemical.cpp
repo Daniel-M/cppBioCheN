@@ -26,13 +26,10 @@ std::ostream& operator<<(std::ostream& outStream,vector<T> vtVector)
 
 void ode_system( const vector<double> &x , vector<double> &dxdt , double t )
 {
-	
-	dxdt[1] = -k[0]*x[1]+k[1]*pow(x[0],2)-k[2]*x[1]*x[3]+k[3]*x[2]+k[5]*x[0]*x[4];
-	dxdt[0] = 2*k[0]*x[1]-2*k[1]*pow(x[0],2)+k[4]*x[2]-k[5]*x[0]*x[4];
-	dxdt[3] = -k[2]*x[1]*x[3]+k[3]*x[2]+k[5]*x[0]*x[4];
-	dxdt[2] = k[2]*x[1]*x[3]-k[3]*x[2]-k[4]*x[2];
-	dxdt[4] = k[4]*x[2]-k[5]*x[0]*x[4];
-	
+	dxdt[2] = -k[0]*x[2]*x[3]+k[1]*x[0]+k[2]*x[0];
+	dxdt[0] = k[0]*x[2]*x[3]-k[1]*x[0]-k[2]*x[0];
+	dxdt[1] = k[1]*x[0];
+	dxdt[3] = -k[0]*x[2]*x[3]+k[2]*x[0];
 }
 
 void write_ode( const vector<double> &x , const double t )
